@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest . --typescript --tailwind --app --no-src --import-alias \"@/*\" --eslint)",
+      "Bash(npm install)",
+      "Bash(npm run build:*)",
+      "Bash(if exist .next rmdir /s /q .next)",
+      "Bash(if exist node_modules rmdir /s /q node_modules)",
+      "Bash(rm:*)",
+      "Bash(npm cache clean:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run dev:*)",
+      "Bash(cat:*)"
+    ]
+  }
+}
