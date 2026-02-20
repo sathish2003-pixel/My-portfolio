@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Code, Users, Award, Coffee } from "lucide-react";
 
@@ -66,14 +66,6 @@ export function Stats() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-    layoutEffect: false
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
-
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -110,12 +102,10 @@ export function Stats() {
         </motion.div>
 
         <motion.div
-          style={{ y }}
           variants={container}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
-          data-parallax="true"
         >
           {stats.map((stat, index) => (
             <motion.div

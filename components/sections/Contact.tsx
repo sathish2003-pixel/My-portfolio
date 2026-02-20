@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { personalInfo } from "@/config/content";
-import { Mail, Github, Linkedin, Twitter, Send } from "lucide-react";
+import { Mail, Github, Linkedin, Send, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ParallaxText } from "@/components/ParallaxText";
 
@@ -85,7 +85,7 @@ export function Contact() {
   const socialLinks = [
     { icon: <Github className="w-5 h-5" />, href: personalInfo.github, label: "GitHub" },
     { icon: <Linkedin className="w-5 h-5" />, href: personalInfo.linkedin, label: "LinkedIn" },
-    { icon: <Twitter className="w-5 h-5" />, href: personalInfo.twitter, label: "Twitter" },
+    { icon: <MessageCircle className="w-5 h-5" />, href: personalInfo.whatsapp, label: "WhatsApp" },
   ];
 
   return (
@@ -281,7 +281,7 @@ export function Contact() {
           className="text-center mt-16 pt-8 border-t border-white/10"
         >
           <p className="text-gray-600 dark:text-gray-400">
-            © {new Date().getFullYear()} {personalInfo.name}. Built with Next.js & Tailwind CSS.
+            © {new Date().getFullYear()} {personalInfo.name}. Crafted with passion using Next.js & Tailwind CSS.
           </p>
         </motion.div>
       </div>

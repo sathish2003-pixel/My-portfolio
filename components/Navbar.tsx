@@ -52,10 +52,12 @@ export function Navbar() {
         ease: [0.16, 1, 0.3, 1],
       }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "glass shadow-lg py-4 backdrop-blur-xl"
-          : "bg-transparent py-6"
-      }`}
+        mobileMenuOpen
+          ? "bg-black/30 dark:bg-black/40 backdrop-blur-xl h-screen"
+          : scrolled
+            ? "bg-white/10 dark:bg-black/20 backdrop-blur-xl shadow-lg"
+            : "bg-transparent"
+      } ${mobileMenuOpen ? "py-4" : scrolled ? "py-4" : "py-6"}`}
     >
       <div className="container-custom px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -99,7 +101,7 @@ export function Navbar() {
             {/* Theme Toggle */}
             <motion.button
               onClick={toggleTheme}
-              className="p-2 rounded-full glass hover:bg-white/20 dark:hover:bg-black/20 transition-colors"
+              className="p-2 rounded-full bg-white/10 dark:bg-black/10 backdrop-blur-lg hover:bg-white/20 dark:hover:bg-black/20 transition-colors"
               whileHover={{ scale: 1.1, rotate: 180 }}
               whileTap={{ scale: 0.9 }}
               aria-label="Toggle theme"
@@ -116,7 +118,7 @@ export function Navbar() {
           <div className="md:hidden flex items-center space-x-4">
             <motion.button
               onClick={toggleTheme}
-              className="p-2 rounded-full glass"
+              className="p-2 rounded-full bg-white/10 dark:bg-black/10 backdrop-blur-lg hover:bg-white/20 dark:hover:bg-black/20 transition-colors"
               whileTap={{ scale: 0.9 }}
               aria-label="Toggle theme"
             >
@@ -129,7 +131,7 @@ export function Navbar() {
 
             <motion.button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-full glass"
+              className="p-2 rounded-full bg-white/10 dark:bg-black/10 backdrop-blur-lg hover:bg-white/20 dark:hover:bg-black/20 transition-colors"
               whileTap={{ scale: 0.9 }}
               aria-label="Toggle menu"
             >
@@ -143,16 +145,16 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Full Screen */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass mt-4 rounded-2xl mx-4 overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="md:hidden flex flex-col items-center justify-center flex-1 h-[calc(100vh-80px)]"
           >
-            <div className="flex flex-col space-y-4 p-6">
+            <div className="flex flex-col items-center space-y-8">
               {navItems.map((item, index) => (
                 <motion.a
                   key={item.name}
@@ -161,10 +163,10 @@ export function Navbar() {
                     e.preventDefault();
                     handleNavClick(item.href);
                   }}
-                  className="text-lg font-medium hover:text-blue-500 transition-colors"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  className="text-2xl font-semibold hover:text-blue-500 transition-colors"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.08 }}
                 >
                   {item.name}
                 </motion.a>

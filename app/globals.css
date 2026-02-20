@@ -21,12 +21,13 @@
   html {
     @apply bg-background;
     overflow-x: hidden;
+    overflow-y: scroll;
   }
 
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    overflow-x: hidden;
+    overflow: visible;
     width: 100%;
     position: relative;
   }
@@ -38,7 +39,7 @@
   }
 
   .glass {
-    @apply bg-white/10 dark:bg-black/10 backdrop-blur-lg border border-white/20 dark:border-white/10;
+    @apply bg-white/10 dark:bg-black/10 backdrop-blur-lg;
   }
 
   .glass-card {
@@ -49,12 +50,17 @@
     @apply bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent;
   }
 
+  .name-gradient {
+    @apply bg-gradient-to-r from-amber-300 via-orange-400 to-rose-500 bg-clip-text text-transparent;
+    font-weight: 700;
+  }
+
   .section-padding {
     @apply px-4 sm:px-6 lg:px-8 py-16 md:py-24;
   }
 
   .container-custom {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 }
 
@@ -64,27 +70,7 @@ html {
   scroll-padding-top: 80px;
 }
 
-/* GPU acceleration and performance */
-@media (prefers-reduced-motion: no-preference) {
-  .glass-card,
-  .glass,
-  [data-parallax],
-  [class*="motion"] {
-    will-change: transform, opacity;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-  }
-}
-
-/* Optimize animations for 60fps */
 @layer utilities {
-  .gpu-accelerated {
-    will-change: transform, opacity;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-  }
-
   .smooth-transition {
     transition-property: color, background-color, border-color, opacity;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -147,6 +133,7 @@ html {
     transform: translate3d(-20px, 20px, 0) scale(0.9);
   }
 }
+
 
 /* Focus visible styles for accessibility */
 *:focus-visible {

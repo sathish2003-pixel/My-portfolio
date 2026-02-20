@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navbar } from "@/components/Navbar";
@@ -9,6 +9,10 @@ const inter = Inter({ subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
+});
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
 });
 
 export const metadata: Metadata = {
@@ -78,15 +82,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <ThemeScript />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </head>
-      <body className={`${inter.className} ${spaceGrotesk.variable} antialiased overflow-x-hidden max-w-[100vw] gpu-accelerated`}>
+      <body className={`${inter.className} ${spaceGrotesk.variable} ${playfair.variable} antialiased`}>
         <ThemeProvider>
           <Navbar />
-          <main className="overflow-x-hidden gpu-accelerated">{children}</main>
+          <main>{children}</main>
         </ThemeProvider>
       </body>
     </html>
