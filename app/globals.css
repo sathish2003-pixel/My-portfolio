@@ -144,6 +144,14 @@ html {
   @apply bg-blue-500/30 text-foreground;
 }
 
+/* Hero grid background */
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
 /* Hero animated background - desktop only */
 .hero-orb-1 {
   animation: orb-1 10s ease-in-out infinite;

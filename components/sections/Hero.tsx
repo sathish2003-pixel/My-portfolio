@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Download, Mail, Code2, Layers, Rocket } from "lucide-react";
+import { Download, Mail, Code2, Braces, Bot, Cloud, Terminal, Rocket } from "lucide-react";
 import { personalInfo } from "@/config/content";
 import { Button } from "@/components/ui/Button";
 import Image from "next/image";
@@ -15,7 +15,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="min-h-screen flex items-end lg:items-center justify-center relative overflow-hidden pb-10 lg:pb-0"
     >
       {/* Mobile: Background image with gradient overlay */}
       <div className="absolute inset-0 lg:hidden">
@@ -29,27 +29,49 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/90" />
       </div>
 
-      {/* Desktop: Animated background */}
+      {/* Desktop: Animated background - dark */}
       <div className="hidden lg:block absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Large moving gradient orbs */}
-        <div className="absolute top-[-20%] left-[-10%] w-[700px] h-[700px] bg-purple-950/70 rounded-full blur-[120px] hero-orb-1" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[800px] h-[800px] bg-blue-950/70 rounded-full blur-[120px] hero-orb-2" />
-        <div className="absolute top-[30%] left-[40%] w-[500px] h-[500px] bg-rose-950/60 rounded-full blur-[100px] hero-orb-3" />
-        <div className="absolute top-[5%] right-[10%] w-[400px] h-[400px] bg-amber-950/50 rounded-full blur-[100px] hero-orb-4" />
+        {/* Dark moving gradient orbs */}
+        <div className="absolute top-[-20%] left-[-10%] w-[700px] h-[700px] bg-purple-950/40 rounded-full blur-[150px] hero-orb-1" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[800px] h-[800px] bg-blue-950/40 rounded-full blur-[150px] hero-orb-2" />
 
-        {/* Animated gradient mesh overlay */}
-        <div className="absolute inset-0 hero-mesh opacity-60" />
+        {/* Animated grid lines */}
+        <div className="absolute inset-0 hero-grid opacity-[0.03]" />
 
         {/* Floating particles */}
-        <div className="absolute top-[15%] left-[20%] w-2 h-2 rounded-full bg-blue-400/15 hero-particle-1" />
-        <div className="absolute top-[60%] left-[70%] w-1.5 h-1.5 rounded-full bg-purple-400/15 hero-particle-2" />
-        <div className="absolute top-[80%] left-[30%] w-2.5 h-2.5 rounded-full bg-pink-400/12 hero-particle-3" />
-        <div className="absolute top-[25%] left-[80%] w-1.5 h-1.5 rounded-full bg-amber-400/15 hero-particle-4" />
-        <div className="absolute top-[45%] left-[15%] w-2 h-2 rounded-full bg-cyan-400/12 hero-particle-5" />
-        <div className="absolute top-[70%] left-[55%] w-1 h-1 rounded-full bg-violet-400/15 hero-particle-6" />
+        <div className="absolute top-[15%] left-[20%] w-1.5 h-1.5 rounded-full bg-purple-400/10 hero-particle-1" />
+        <div className="absolute top-[60%] left-[70%] w-1 h-1 rounded-full bg-blue-400/10 hero-particle-2" />
+        <div className="absolute top-[80%] left-[30%] w-2 h-2 rounded-full bg-purple-400/8 hero-particle-3" />
+        <div className="absolute top-[25%] left-[80%] w-1 h-1 rounded-full bg-blue-400/10 hero-particle-4" />
+
+        {/* Animated lines */}
+        <motion.div
+          initial={{ x: "-100%" }}
+          animate={{ x: "200%" }}
+          transition={{ duration: 8, repeat: Infinity, ease: "linear", repeatDelay: 3 }}
+          className="absolute top-[30%] left-0 w-[200px] h-[1px] bg-gradient-to-r from-transparent via-purple-500/20 to-transparent"
+        />
+        <motion.div
+          initial={{ x: "200%" }}
+          animate={{ x: "-100%" }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear", repeatDelay: 2 }}
+          className="absolute top-[70%] right-0 w-[300px] h-[1px] bg-gradient-to-r from-transparent via-blue-500/15 to-transparent"
+        />
+        <motion.div
+          initial={{ y: "-100%" }}
+          animate={{ y: "200%" }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear", repeatDelay: 4 }}
+          className="absolute top-0 left-[25%] w-[1px] h-[200px] bg-gradient-to-b from-transparent via-purple-500/15 to-transparent"
+        />
+        <motion.div
+          initial={{ y: "200%" }}
+          animate={{ y: "-100%" }}
+          transition={{ duration: 9, repeat: Infinity, ease: "linear", repeatDelay: 3 }}
+          className="absolute bottom-0 right-[30%] w-[1px] h-[250px] bg-gradient-to-b from-transparent via-blue-500/10 to-transparent"
+        />
       </div>
 
-      <div className="container-custom relative z-10 py-16 md:py-24">
+      <div className="container-custom relative z-10 pt-40 pb-6 sm:pt-48 sm:pb-8 lg:py-24">
         <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-48 xl:gap-64">
 
           {/* Text Content */}
@@ -99,27 +121,17 @@ export function Hero() {
                     {letter}
                   </motion.span>
                 ))}
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{
-                    duration: 0.8,
-                    repeat: 4,
-                    delay: 0.8 + personalInfo.name.length * 0.12,
-                  }}
-                  className="inline-block w-[3px] h-[0.8em] bg-orange-400 ml-1 align-baseline"
-                />
               </span>
             </h1>
 
-            {/* Role */}
+            {/* Role with typing line */}
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-              className="flex items-center gap-3 text-xl sm:text-2xl md:text-3xl font-semibold mb-5 text-gray-300 lg:text-gray-600 lg:dark:text-gray-400"
+              className="flex items-center gap-3 text-xl sm:text-2xl md:text-3xl font-semibold mb-5 text-gray-300 lg:text-gray-700 lg:dark:text-gray-400"
             >
-              <Code2 className="w-6 h-6 sm:w-7 sm:h-7 text-blue-500 hidden lg:block" />
+              <Code2 className="w-6 h-6 sm:w-7 sm:h-7 text-blue-600 dark:text-blue-500 hidden lg:block" />
               {personalInfo.role}
             </motion.h2>
 
@@ -128,95 +140,121 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-              className="text-base sm:text-lg md:text-xl mb-6 text-gray-300 lg:text-gray-600 lg:dark:text-gray-400 max-w-xl"
+              className="text-base sm:text-lg lg:text-base mb-6 text-gray-300 lg:text-gray-700 lg:dark:text-gray-400 max-w-xl"
             >
-              {personalInfo.tagline}
+              <span className="lg:hidden">{personalInfo.tagline}</span>
+              <span className="hidden lg:inline">{personalInfo.taglineShort}</span>
             </motion.p>
 
-            {/* Highlights */}
+            {/* Mobile only - Quick info */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.45 }}
-              className="hidden lg:flex flex-wrap gap-4 mb-8"
+              transition={{ duration: 0.8, delay: 0.45 }}
+              className="lg:hidden flex flex-wrap gap-2 mb-6"
             >
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-400 text-sm font-medium">
-                <Layers className="w-4 h-4" />
-                Full-Stack Development
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 text-xs font-medium text-white/80">
+                <Terminal className="w-3 h-3" />
+                Full-Stack Dev
               </span>
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-500/10 text-purple-400 text-sm font-medium">
-                <Code2 className="w-4 h-4" />
-                React & Next.js
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 text-xs font-medium text-white/80">
+                <Bot className="w-3 h-3" />
+                AI & Automation
               </span>
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-orange-500/10 text-orange-400 text-sm font-medium">
-                <Rocket className="w-4 h-4" />
-                AI/LLM Integration
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 text-xs font-medium text-white/80">
+                <Cloud className="w-3 h-3" />
+                Cloud & DevOps
               </span>
             </motion.div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-row gap-4 justify-start items-center flex-wrap">
-              <motion.div
-                initial={{ opacity: 0, x: -150 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 0.5 }}
-              >
-                <Button
-                  href={personalInfo.resumeUrl}
-                  icon={<Download className="w-4 h-4 sm:w-5 sm:h-5" />}
-                  variant="primary"
+            {/* Desktop Highlights with staggered animation */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.45 }}
+              className="hidden lg:flex gap-3 mb-8"
+            >
+              {[
+                { icon: <Terminal className="w-4 h-4" />, label: "Web & Cloud Apps", color: "text-blue-500 dark:text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20" },
+                { icon: <Bot className="w-4 h-4" />, label: "AI Automation", color: "text-purple-500 dark:text-purple-400", bg: "bg-purple-500/10", border: "border-purple-500/20" },
+                { icon: <Cloud className="w-4 h-4" />, label: "Serverless & DevOps", color: "text-orange-500 dark:text-orange-400", bg: "bg-orange-500/10", border: "border-orange-500/20" },
+              ].map((tag, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 + i * 0.12 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg ${tag.bg} border ${tag.border} ${tag.color} text-sm font-medium cursor-default transition-all`}
                 >
-                  Download Resume
-                </Button>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: 150 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 0.6 }}
-              >
-                <Button
-                  onClick={() => handleScroll("#contact")}
-                  icon={<Mail className="w-4 h-4 sm:w-5 sm:h-5" />}
-                  variant="secondary"
-                >
-                  Get in Touch
-                </Button>
-              </motion.div>
-            </div>
+                  {tag.icon}
+                  {tag.label}
+                </motion.span>
+              ))}
+            </motion.div>
 
-            {/* Desktop only - Tech quotes */}
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 0.5 }}
+              className="flex justify-center lg:justify-start"
+            >
+              <Button
+                onClick={() => handleScroll("#contact")}
+                icon={<Mail className="w-4 h-4 sm:w-5 sm:h-5" />}
+                variant="primary"
+                className="lg:py-2.5 lg:px-6 lg:text-sm lg:min-h-[40px]"
+              >
+                Get in Touch
+              </Button>
+            </motion.div>
+
+            {/* Desktop only - Stats with count animation */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 1.2 }}
               className="hidden lg:flex items-center gap-6 mt-10 pt-8 border-t border-white/10"
             >
-              <div className="flex items-center gap-4">
-                <span className="text-3xl font-bold gradient-text">1+</span>
-                <span className="text-sm text-gray-500 dark:text-gray-400 leading-tight">Years of<br />Experience</span>
-              </div>
-              <div className="w-px h-10 bg-white/10" />
-              <div className="flex items-center gap-4">
-                <span className="text-3xl font-bold gradient-text">10+</span>
-                <span className="text-sm text-gray-500 dark:text-gray-400 leading-tight">Projects<br />Completed</span>
-              </div>
-              <div className="w-px h-10 bg-white/10" />
-              <div className="flex items-center gap-4">
-                <span className="text-3xl font-bold gradient-text">100%</span>
-                <span className="text-sm text-gray-500 dark:text-gray-400 leading-tight">Committed to<br />Excellence</span>
-              </div>
+              {[
+                { value: "1+", label: "Years of\nExperience" },
+                { value: "10+", label: "Projects\nCompleted" },
+                { value: "100%", label: "Committed to\nExcellence" },
+              ].map((stat, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.4 + i * 0.2 }}
+                  className="flex items-center gap-4"
+                >
+                  {i > 0 && <div className="w-px h-10 bg-white/10 -ml-2 mr-2" />}
+                  <span className="text-3xl font-bold gradient-text">{stat.value}</span>
+                  <span className="text-sm text-gray-500 dark:text-gray-400 leading-tight whitespace-pre">{stat.label}</span>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
 
           {/* Desktop Image - hidden on mobile */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
             className="flex-shrink-0 hidden lg:block order-2"
           >
             <div className="relative w-96 h-96">
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-pink-500/30 blur-2xl rounded-3xl" />
+              {/* Animated glow ring */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute -inset-3 rounded-3xl"
+                style={{
+                  background: "conic-gradient(from 0deg, transparent, rgba(168,85,247,0.15), transparent, rgba(59,130,246,0.15), transparent)",
+                }}
+              />
+              <div className="absolute -inset-4 bg-gradient-to-r from-purple-500/15 via-blue-500/15 to-purple-500/15 blur-2xl rounded-3xl" />
               <div className="relative w-full h-full overflow-hidden rounded-3xl">
                 <Image
                   src="/profile.jpg"
@@ -226,6 +264,17 @@ export function Hero() {
                   priority
                 />
               </div>
+              {/* Corner accents */}
+              <motion.div
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-2 -right-2 w-4 h-4 border-t-2 border-r-2 border-purple-500/30 rounded-tr-lg"
+              />
+              <motion.div
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                className="absolute -bottom-2 -left-2 w-4 h-4 border-b-2 border-l-2 border-blue-500/30 rounded-bl-lg"
+              />
             </div>
           </motion.div>
         </div>

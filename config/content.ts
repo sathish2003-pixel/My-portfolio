@@ -1,7 +1,8 @@
 export const personalInfo = {
   name: "Sathish Kumar",
   role: "Software Engineer",
-  tagline: "Crafting exceptional digital experiences with code",
+  tagline: "Crafting exceptional digital experiences with code. I build AI-powered apps, automate workflows, and turn complex ideas into clean, scalable software.",
+  taglineShort: "Where AI meets automation — engineering the next wave of intelligent software.",
   bio: "Passionate software engineer with 1+ year of experience building scalable web applications. I specialize in modern JavaScript frameworks and love turning complex problems into elegant solutions.",
   email: "satheshsathish2206@gmail.com",
   github: "https://github.com/sathish2003-pixel",
