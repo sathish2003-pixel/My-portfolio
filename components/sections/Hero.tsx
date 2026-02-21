@@ -15,7 +15,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-end lg:items-center justify-center relative overflow-hidden pb-10 lg:pb-0"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
       {/* Mobile: Background image with gradient overlay */}
       <div className="absolute inset-0 lg:hidden">
@@ -72,7 +72,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="container-custom relative z-10 pt-20 pb-6 sm:pt-24 sm:pb-8 lg:py-24">
+      <div className="container-custom relative z-10 py-20 lg:py-24">
         <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-48 xl:gap-64">
 
           {/* Text Content */}
