@@ -21,13 +21,12 @@
   html {
     @apply bg-background;
     overflow-x: hidden;
-    overflow-y: scroll;
   }
 
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    overflow: visible;
+    overflow-x: hidden;
     width: 100%;
     position: relative;
   }
