@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Code2, Smartphone, Database, Cloud, Palette, Zap } from "lucide-react";
+import { Code2, Bot, Database, Cloud, Zap, Rocket, Globe } from "lucide-react";
 
 const services = [
   {
@@ -15,9 +15,9 @@ const services = [
     hover: "group-hover:text-blue-400",
   },
   {
-    icon: <Smartphone className="w-6 h-6 sm:w-7 sm:h-7" />,
-    title: "UI/UX Design",
-    description: "Crafting beautiful, intuitive interfaces that users love with a focus on accessibility.",
+    icon: <Bot className="w-6 h-6 sm:w-7 sm:h-7" />,
+    title: "AI Automation",
+    description: "Building intelligent systems with LLMs, multi-agent workflows, and automated pipelines.",
     gradient: "from-purple-500 to-pink-400",
     bg: "bg-purple-500/10",
     color: "text-purple-400",
@@ -26,29 +26,11 @@ const services = [
   {
     icon: <Database className="w-6 h-6 sm:w-7 sm:h-7" />,
     title: "Backend Development",
-    description: "Architecting scalable server-side systems with Node.js, Python, and modern databases.",
+    description: "Architecting scalable server-side systems with Node.js, FastAPI, and modern databases.",
     gradient: "from-green-500 to-emerald-400",
     bg: "bg-green-500/10",
     color: "text-green-400",
     hover: "group-hover:text-green-400",
-  },
-  {
-    icon: <Cloud className="w-6 h-6 sm:w-7 sm:h-7" />,
-    title: "Cloud & DevOps",
-    description: "Deploying and scaling applications on AWS with Docker, CI/CD pipelines, and serverless.",
-    gradient: "from-orange-500 to-amber-400",
-    bg: "bg-orange-500/10",
-    color: "text-orange-400",
-    hover: "group-hover:text-orange-400",
-  },
-  {
-    icon: <Palette className="w-6 h-6 sm:w-7 sm:h-7" />,
-    title: "Design Systems",
-    description: "Building reusable component libraries and scalable design tokens for consistency.",
-    gradient: "from-violet-500 to-purple-400",
-    bg: "bg-violet-500/10",
-    color: "text-violet-400",
-    hover: "group-hover:text-violet-400",
   },
   {
     icon: <Zap className="w-6 h-6 sm:w-7 sm:h-7" />,
@@ -58,6 +40,24 @@ const services = [
     bg: "bg-yellow-500/10",
     color: "text-yellow-400",
     hover: "group-hover:text-yellow-400",
+  },
+  {
+    icon: <Rocket className="w-6 h-6 sm:w-7 sm:h-7" />,
+    title: "Deployment & CI/CD",
+    description: "End-to-end deployment with Docker, AWS Lambda, serverless functions, and automated pipelines.",
+    gradient: "from-orange-500 to-red-400",
+    bg: "bg-orange-500/10",
+    color: "text-orange-400",
+    hover: "group-hover:text-orange-400",
+  },
+  {
+    icon: <Globe className="w-6 h-6 sm:w-7 sm:h-7" />,
+    title: "Web Scraping",
+    description: "Automated data extraction at scale using Selenium, headless browsers, and Dockerized scrapers.",
+    gradient: "from-cyan-500 to-teal-400",
+    bg: "bg-cyan-500/10",
+    color: "text-cyan-400",
+    hover: "group-hover:text-cyan-400",
   },
 ];
 

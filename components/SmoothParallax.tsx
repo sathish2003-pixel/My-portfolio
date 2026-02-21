@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, ReactNode } from "react";
+import { useRef, useState, useEffect, ReactNode } from "react";
 
 interface SmoothParallaxProps {
   children: ReactNode;
@@ -15,6 +15,11 @@ export function SmoothParallax({
   className = "",
 }: SmoothParallaxProps) {
   const ref = useRef(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -22,17 +27,22 @@ export function SmoothParallax({
     layoutEffect: false,
   });
 
-  // Sections slide up smoothly as they enter, settle in place, then slide up as they leave
   const y = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [offset, 0, 0, -offset / 2]);
-  // Gentle scale: slightly smaller when entering, full size in view
-  const scale = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [0.97, 1, 1, 0.99]);
-  // Smooth fade: visible quickly, stays visible, gentle fade on exit
-  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0.5]);
+  const scale = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [0.98, 1, 1, 0.99]);
+
+  // Don't apply parallax until mounted to prevent flash of black
+  if (!mounted) {
+    return (
+      <div className={className}>
+        {children}
+      </div>
+    );
+  }
 
   return (
     <div ref={ref} className={className}>
       <motion.div
-        style={{ y, scale, opacity }}
+        style={{ y, scale }}
         className="will-change-transform"
       >
         {children}

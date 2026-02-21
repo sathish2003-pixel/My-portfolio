@@ -23,10 +23,11 @@ export function Hero() {
           src="/profile.jpg"
           alt={personalInfo.name}
           fill
-          className="object-cover object-top"
+          className="object-cover object-top scale-110"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/95" />
+        <div className="absolute inset-0 bg-gradient-to-t from-purple-950/30 via-transparent to-transparent" />
       </div>
 
       {/* Desktop: Animated background - dark */}
@@ -71,135 +72,105 @@ export function Hero() {
         />
       </div>
 
-      <div className="container-custom relative z-10 pt-40 pb-6 sm:pt-48 sm:pb-8 lg:py-24">
+      <div className="container-custom relative z-10 pt-20 pb-6 sm:pt-24 sm:pb-8 lg:py-24">
         <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-48 xl:gap-64">
 
           {/* Text Content */}
           <div className="flex-1 text-left order-1">
             {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-              className="mb-6 hidden lg:inline-flex"
-            >
+            <div className="mb-6 hidden lg:inline-flex">
               <span className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-white/10 bg-white/5 dark:bg-white/5 backdrop-blur-sm">
                 <span className="text-sm font-semibold tracking-wide bg-gradient-to-r from-amber-300 via-orange-400 to-rose-500 bg-clip-text text-transparent">
                   Let's Build Together
                 </span>
                 <Rocket className="w-4 h-4 text-orange-400" />
               </span>
-            </motion.div>
+            </div>
 
             {/* Name */}
             <h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-tight text-white lg:text-foreground"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-3 lg:mb-4 tracking-tight text-white lg:text-foreground"
               style={{ fontFamily: "var(--font-space-grotesk, 'Space Grotesk', sans-serif)" }}
             >
-              <motion.span
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                className="inline-block"
-              >
-                Hi, I'm
-              </motion.span>
-              <span className="block mt-3">
-                {personalInfo.name.split("").map((letter, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{ opacity: 0, x: 150 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{
-                      duration: 0.8,
-                      ease: [0.25, 0.1, 0.25, 1],
-                      delay: 0.8 + i * 0.12,
-                    }}
-                    className={`inline-block name-gradient ${letter === " " ? "w-[0.25em]" : ""}`}
-                    style={{ fontFamily: "var(--font-playfair, 'Playfair Display', serif)" }}
-                  >
-                    {letter}
-                  </motion.span>
-                ))}
+              Hi, I'm
+              <span className="block mt-2 lg:mt-3">
+                <span className="name-gradient" style={{ fontFamily: "var(--font-playfair, 'Playfair Display', serif)" }}>
+                  {personalInfo.name}
+                </span>
               </span>
             </h1>
 
-            {/* Role with typing line */}
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-              className="flex items-center gap-3 text-xl sm:text-2xl md:text-3xl font-semibold mb-5 text-gray-300 lg:text-gray-700 lg:dark:text-gray-400"
-            >
-              <Code2 className="w-6 h-6 sm:w-7 sm:h-7 text-blue-600 dark:text-blue-500 hidden lg:block" />
+            {/* Role - mobile below name, desktop inline */}
+            <div className="lg:hidden flex items-center gap-2 mb-4">
+              <div className="h-[1px] w-8 bg-gradient-to-r from-amber-400 to-rose-500" />
+              <span className="text-sm font-semibold uppercase tracking-[0.15em] text-white/60">{personalInfo.role}</span>
+            </div>
+            <h2 className="hidden lg:flex items-center gap-3 text-xl sm:text-2xl md:text-3xl font-semibold mb-5 text-gray-700 dark:text-gray-400">
+              <Code2 className="w-6 h-6 sm:w-7 sm:h-7 text-blue-600 dark:text-blue-500" />
               {personalInfo.role}
-            </motion.h2>
+            </h2>
 
             {/* Tagline */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-              className="text-base sm:text-lg lg:text-base mb-6 text-gray-300 lg:text-gray-700 lg:dark:text-gray-400 max-w-xl"
-            >
+            <p className="text-sm sm:text-base lg:text-base mb-5 text-white/70 lg:text-gray-700 lg:dark:text-gray-400 max-w-xl leading-relaxed">
               <span className="lg:hidden">{personalInfo.tagline}</span>
               <span className="hidden lg:inline">{personalInfo.taglineShort}</span>
-            </motion.p>
+            </p>
 
-            {/* Mobile only - Quick info */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.45 }}
-              className="lg:hidden flex flex-wrap gap-2 mb-6"
-            >
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 text-xs font-medium text-white/80">
-                <Terminal className="w-3 h-3" />
-                Full-Stack Dev
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 text-xs font-medium text-white/80">
-                <Bot className="w-3 h-3" />
-                AI & Automation
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 text-xs font-medium text-white/80">
-                <Cloud className="w-3 h-3" />
-                Cloud & DevOps
-              </span>
-            </motion.div>
+            {/* Mobile only - Skill chips */}
+            <div className="lg:hidden flex flex-wrap gap-2 mb-5">
+              {[
+                { icon: <Terminal className="w-3 h-3" />, label: "Full-Stack", color: "border-blue-400/30 text-blue-300" },
+                { icon: <Bot className="w-3 h-3" />, label: "AI & LLM", color: "border-purple-400/30 text-purple-300" },
+                { icon: <Cloud className="w-3 h-3" />, label: "Cloud", color: "border-orange-400/30 text-orange-300" },
+              ].map((chip, i) => (
+                <span
+                  key={i}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 backdrop-blur-sm border ${chip.color} text-xs font-medium`}
+                >
+                  {chip.icon}
+                  {chip.label}
+                </span>
+              ))}
+            </div>
 
-            {/* Desktop Highlights with staggered animation */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.45 }}
-              className="hidden lg:flex gap-3 mb-8"
+            {/* Mobile stats row */}
+            <div className="lg:hidden flex items-center gap-5 mb-6"
             >
+              <div className="text-center">
+                <div className="text-xl font-bold text-white">1+</div>
+                <div className="text-[10px] text-white/40 uppercase tracking-wider">Year Exp</div>
+              </div>
+              <div className="w-px h-8 bg-white/10" />
+              <div className="text-center">
+                <div className="text-xl font-bold text-white">10+</div>
+                <div className="text-[10px] text-white/40 uppercase tracking-wider">Projects</div>
+              </div>
+              <div className="w-px h-8 bg-white/10" />
+              <div className="text-center">
+                <div className="text-xl font-bold text-white">100%</div>
+                <div className="text-[10px] text-white/40 uppercase tracking-wider">Dedication</div>
+              </div>
+            </div>
+
+            {/* Desktop Highlights */}
+            <div className="hidden lg:flex gap-3 mb-8">
               {[
                 { icon: <Terminal className="w-4 h-4" />, label: "Web & Cloud Apps", color: "text-blue-500 dark:text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20" },
                 { icon: <Bot className="w-4 h-4" />, label: "AI Automation", color: "text-purple-500 dark:text-purple-400", bg: "bg-purple-500/10", border: "border-purple-500/20" },
                 { icon: <Cloud className="w-4 h-4" />, label: "Serverless & DevOps", color: "text-orange-500 dark:text-orange-400", bg: "bg-orange-500/10", border: "border-orange-500/20" },
               ].map((tag, i) => (
-                <motion.span
+                <span
                   key={i}
-                  initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 + i * 0.12 }}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg ${tag.bg} border ${tag.border} ${tag.color} text-sm font-medium cursor-default transition-all`}
+                  className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg ${tag.bg} border ${tag.border} ${tag.color} text-sm font-medium cursor-default hover:scale-105 hover:-translate-y-0.5 transition-all`}
                 >
                   {tag.icon}
                   {tag.label}
-                </motion.span>
+                </span>
               ))}
-            </motion.div>
+            </div>
 
             {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 0.5 }}
-              className="flex justify-center lg:justify-start"
-            >
+            <div className="flex justify-center lg:justify-start">
               <Button
                 onClick={() => handleScroll("#contact")}
                 icon={<Mail className="w-4 h-4 sm:w-5 sm:h-5" />}
@@ -208,42 +179,26 @@ export function Hero() {
               >
                 Get in Touch
               </Button>
-            </motion.div>
+            </div>
 
-            {/* Desktop only - Stats with count animation */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.2 }}
-              className="hidden lg:flex items-center gap-6 mt-10 pt-8 border-t border-white/10"
-            >
+            {/* Desktop only - Stats */}
+            <div className="hidden lg:flex items-center gap-6 mt-10 pt-8 border-t border-white/10">
               {[
                 { value: "1+", label: "Years of\nExperience" },
                 { value: "10+", label: "Projects\nCompleted" },
                 { value: "100%", label: "Committed to\nExcellence" },
               ].map((stat, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.4 + i * 0.2 }}
-                  className="flex items-center gap-4"
-                >
+                <div key={i} className="flex items-center gap-4">
                   {i > 0 && <div className="w-px h-10 bg-white/10 -ml-2 mr-2" />}
                   <span className="text-3xl font-bold gradient-text">{stat.value}</span>
                   <span className="text-sm text-gray-500 dark:text-gray-400 leading-tight whitespace-pre">{stat.label}</span>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
 
           {/* Desktop Image - hidden on mobile */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            className="flex-shrink-0 hidden lg:block order-2"
-          >
+          <div className="flex-shrink-0 hidden lg:block order-2">
             <div className="relative w-96 h-96">
               {/* Animated glow ring */}
               <motion.div
@@ -276,7 +231,7 @@ export function Hero() {
                 className="absolute -bottom-2 -left-2 w-4 h-4 border-b-2 border-l-2 border-blue-500/30 rounded-bl-lg"
               />
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

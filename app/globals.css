@@ -20,7 +20,6 @@
 @layer base {
   html {
     @apply bg-background;
-    overflow-x: hidden;
   }
 
   body {
