@@ -2,32 +2,44 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Code, Users, Award, Coffee } from "lucide-react";
+import { Code, Briefcase, BookOpen, GitBranch } from "lucide-react";
 
 const stats = [
   {
-    icon: <Code className="w-8 h-8" />,
-    value: 20,
-    label: "Projects Completed",
+    icon: <Code className="w-7 h-7" />,
+    value: 10,
+    label: "Projects Delivered",
     suffix: "+",
+    color: "from-blue-500 to-cyan-400",
+    bg: "bg-blue-500/10",
+    text: "text-blue-400",
   },
   {
-    icon: <Users className="w-8 h-8" />,
-    value: 5,
-    label: "Happy Clients",
-    suffix: "+",
-  },
-  {
-    icon: <Award className="w-8 h-8" />,
+    icon: <Briefcase className="w-7 h-7" />,
     value: 1,
     label: "Year Experience",
     suffix: "+",
+    color: "from-purple-500 to-violet-400",
+    bg: "bg-purple-500/10",
+    text: "text-purple-400",
   },
   {
-    icon: <Coffee className="w-8 h-8" />,
+    icon: <GitBranch className="w-7 h-7" />,
     value: 500,
-    label: "Cups of Coffee",
+    label: "Git Contributions",
     suffix: "+",
+    color: "from-orange-500 to-amber-400",
+    bg: "bg-orange-500/10",
+    text: "text-orange-400",
+  },
+  {
+    icon: <BookOpen className="w-7 h-7" />,
+    value: 24,
+    label: "Always Learning",
+    suffix: "/7",
+    color: "from-rose-500 to-pink-400",
+    bg: "bg-rose-500/10",
+    text: "text-rose-400",
   },
 ];
 
@@ -71,13 +83,13 @@ export function Stats() {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.15,
       },
     },
   };
 
   const item = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     show: { opacity: 1, y: 0 },
   };
 
@@ -97,7 +109,7 @@ export function Stats() {
             <span className="gradient-text">Achievements</span> & Stats
           </h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Some numbers that reflect my journey and dedication
+            Milestones that define my journey as a developer
           </p>
         </motion.div>
 
@@ -105,29 +117,32 @@ export function Stats() {
           variants={container}
           initial="hidden"
           animate={isInView ? "show" : "hidden"}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6"
         >
           {stats.map((stat, index) => (
             <motion.div
               key={index}
               variants={item}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="glass-card text-center group"
+              whileHover={{ y: -6 }}
+              className="relative group"
             >
-              <motion.div
-                className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 mb-4 text-blue-500 group-hover:scale-110 transition-transform duration-300"
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.2 }}
-              >
-                {stat.icon}
-              </motion.div>
-              <div className="text-3xl md:text-4xl font-bold mb-2 gradient-text">
-                <CountUp end={stat.value} />
-                {stat.suffix}
+              <div className="glass-card text-center h-full flex flex-col items-center justify-center py-8 hover:shadow-xl transition-all duration-300">
+                {/* Icon */}
+                <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl ${stat.bg} ${stat.text} mb-5 group-hover:scale-110 transition-transform duration-300`}>
+                  {stat.icon}
+                </div>
+
+                {/* Number */}
+                <div className={`text-4xl md:text-5xl font-extrabold mb-2 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                  <CountUp end={stat.value} />
+                  {stat.suffix}
+                </div>
+
+                {/* Label */}
+                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                  {stat.label}
+                </p>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                {stat.label}
-              </p>
             </motion.div>
           ))}
         </motion.div>

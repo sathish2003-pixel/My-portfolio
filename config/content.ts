@@ -3,7 +3,7 @@ export const personalInfo = {
   role: "Software Engineer",
   tagline: "Crafting exceptional digital experiences with code",
   bio: "Passionate software engineer with 1+ year of experience building scalable web applications. I specialize in modern JavaScript frameworks and love turning complex problems into elegant solutions.",
-  email: "sathish@example.com",
+  email: "satheshsathish2206@gmail.com",
   github: "https://github.com/sathish2003-pixel",
   linkedin: "https://www.linkedin.com/in/sathish-kumar-balakrishnan-3436611b5/",
   whatsapp: "https://wa.me/919025893381",
@@ -99,13 +99,30 @@ export const experience = [
     company: "SkillRank",
     location: "Remote",
     period: "July 2024 - Present",
-    description: "Full-stack development of innovative web applications. Building scalable solutions using modern technologies and best practices.",
-    achievements: [
-      "Developed and deployed multiple full-stack features using Next.js and AWS",
-      "Implemented AI/LLM integrations for enhanced user experiences",
-      "Optimized application performance and database queries",
-      "Collaborated with cross-functional teams in agile environment",
+    description: "Building scalable, production-grade applications across AI, automation, and web platforms. Working with modern cloud-native architectures and cutting-edge AI tooling.",
+    projects: [
+      {
+        name: "SkillTest Platform",
+        description: "Developed an AI-powered online testing and assessment platform with automated evaluation, real-time proctoring, and analytics dashboard.",
+        icon: "brain",
+      },
+      {
+        name: "Real Estate Web Scraping",
+        description: "Built a web scraping automation system using Selenium and Dockerized AWS Lambdas to aggregate and analyze real estate deals at scale.",
+        icon: "globe",
+      },
+      {
+        name: "Microservices Architecture",
+        description: "Designed and implemented a microservices-based architecture for scalable, maintainable backend systems with independent deployments.",
+        icon: "blocks",
+      },
+      {
+        name: "Kavia.ai — AI Multi-Agent Platform",
+        description: "Developed a fully automated AI application using LLMs and multi micro-agents to create an intelligent, autonomous tool orchestration platform.",
+        icon: "sparkles",
+      },
     ],
+    techStack: ["AWS Lambda", "Docker", "FastAPI", "Selenium", "Next.js", "Serverless", "Python", "TypeScript"],
   },
 ];
 

@@ -11,6 +11,22 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
+const tagColors: Record<string, { bg: string; text: string }> = {
+  React: { bg: "bg-cyan-500/10", text: "text-cyan-400" },
+  "Next.js": { bg: "bg-gray-500/10", text: "text-gray-400" },
+  TypeScript: { bg: "bg-blue-500/10", text: "text-blue-400" },
+  JavaScript: { bg: "bg-yellow-500/10", text: "text-yellow-400" },
+  "Tailwind CSS": { bg: "bg-teal-500/10", text: "text-teal-400" },
+  MongoDB: { bg: "bg-green-500/10", text: "text-green-400" },
+  PHP: { bg: "bg-indigo-500/10", text: "text-indigo-400" },
+  MySQL: { bg: "bg-orange-500/10", text: "text-orange-400" },
+  HTML5: { bg: "bg-orange-500/10", text: "text-orange-400" },
+  CSS3: { bg: "bg-blue-500/10", text: "text-blue-400" },
+  Bootstrap: { bg: "bg-purple-500/10", text: "text-purple-400" },
+};
+
+const defaultTag = { bg: "bg-gray-500/10", text: "text-gray-400" };
+
 export function ProjectModal({ projectId, onClose }: ProjectModalProps) {
   const project = projects.find((p) => p.id === projectId);
 
@@ -44,61 +60,55 @@ export function ProjectModal({ projectId, onClose }: ProjectModalProps) {
           {/* Modal */}
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="glass-card max-w-3xl w-full max-h-[90vh] overflow-y-auto pointer-events-auto"
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="glass-card max-w-2xl w-full max-h-[85vh] overflow-y-auto pointer-events-auto p-5 sm:p-8"
             >
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="absolute top-4 right-4 p-2 rounded-full glass hover:bg-white/20 dark:hover:bg-black/20 transition-colors z-10"
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 rounded-xl bg-white/10 hover:bg-white/20 transition-colors z-10"
                 aria-label="Close modal"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5" />
               </button>
-
-              {/* Project Image Placeholder */}
-              <div className="relative w-full h-64 mb-6 rounded-xl overflow-hidden bg-gradient-to-br from-blue-500/20 to-purple-500/20">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-8xl opacity-20">
-                    {project.title.charAt(0)}
-                  </div>
-                </div>
-              </div>
 
               {/* Content */}
               <div>
-                <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-3 pr-10">{project.title}</h2>
 
-                <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-6 leading-relaxed">
                   {project.longDescription || project.description}
                 </p>
 
                 {/* Tags */}
                 <div className="mb-6">
-                  <h3 className="text-sm font-semibold mb-3 text-gray-600 dark:text-gray-400">
-                    Technologies Used
+                  <h3 className="text-xs font-semibold mb-3 text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    Tech Stack
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-4 py-2 rounded-full text-sm font-medium bg-blue-500/10 text-blue-500"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                    {project.tags.map((tag) => {
+                      const color = tagColors[tag] || defaultTag;
+                      return (
+                        <span
+                          key={tag}
+                          className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium ${color.bg} ${color.text}`}
+                        >
+                          {tag}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
 
                 {/* Links */}
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-3">
                   {project.githubUrl && (
                     <Button
                       href={project.githubUrl}
-                      icon={<Github className="w-5 h-5" />}
-                      variant="outline"
+                      icon={<Github className="w-4 h-4 sm:w-5 sm:h-5" />}
+                      variant="secondary"
                     >
                       View Code
                     </Button>
@@ -106,7 +116,7 @@ export function ProjectModal({ projectId, onClose }: ProjectModalProps) {
                   {project.liveUrl && (
                     <Button
                       href={project.liveUrl}
-                      icon={<ExternalLink className="w-5 h-5" />}
+                      icon={<ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />}
                       variant="primary"
                     >
                       View Live

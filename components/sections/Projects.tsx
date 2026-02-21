@@ -5,7 +5,6 @@ import { useRef, useState } from "react";
 import { projects } from "@/config/content";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { ProjectModal } from "@/components/ui/ProjectModal";
-import { ParallaxSection } from "@/components/ParallaxSection";
 
 export function Projects() {
   const ref = useRef(null);
@@ -38,34 +37,32 @@ export function Projects() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="text-center mb-16"
+            className="text-center mb-10 md:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               Featured <span className="gradient-text">Projects</span>
             </h2>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              A selection of projects that showcase my skills and experience
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-2">
+              Real-world projects that reflect my skills, creativity, and problem-solving
             </p>
           </motion.div>
 
           {/* Featured Projects */}
-          <ParallaxSection speed={0.3}>
-            <motion.div
-              variants={container}
-              initial="hidden"
-              animate={isInView ? "show" : "hidden"}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
-            >
-              {featuredProjects.map((project) => (
-                <motion.div key={project.id} variants={item}>
-                  <ProjectCard
-                    project={project}
-                    onClick={() => setSelectedProject(project.id)}
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
-          </ParallaxSection>
+          <motion.div
+            variants={container}
+            initial="hidden"
+            animate={isInView ? "show" : "hidden"}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 mb-10 md:mb-14"
+          >
+            {featuredProjects.map((project) => (
+              <motion.div key={project.id} variants={item}>
+                <ProjectCard
+                  project={project}
+                  onClick={() => setSelectedProject(project.id)}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
 
           {/* Other Projects */}
           {otherProjects.length > 0 && (
@@ -74,16 +71,16 @@ export function Projects() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="text-2xl md:text-3xl font-bold mb-8 text-center"
+                className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center"
               >
-                More Projects
+                More <span className="gradient-text">Projects</span>
               </motion.h3>
 
               <motion.div
                 variants={container}
                 initial="hidden"
                 animate={isInView ? "show" : "hidden"}
-                className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6"
               >
                 {otherProjects.map((project) => (
                   <motion.div key={project.id} variants={item}>

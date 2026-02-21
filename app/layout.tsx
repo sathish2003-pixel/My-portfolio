@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, Playfair_Display } from "next/font/google";
+import { Inter, Space_Grotesk, Playfair_Display, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navbar } from "@/components/Navbar";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { siteMetadata } from "@/config/content";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -13,6 +14,10 @@ const spaceGrotesk = Space_Grotesk({
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
+});
+const dancing = Dancing_Script({
+  subsets: ["latin"],
+  variable: "--font-dancing",
 });
 
 export const metadata: Metadata = {
@@ -87,10 +92,11 @@ export default function RootLayout({
         <ThemeScript />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </head>
-      <body className={`${inter.className} ${spaceGrotesk.variable} ${playfair.variable} antialiased`}>
+      <body className={`${inter.className} ${spaceGrotesk.variable} ${playfair.variable} ${dancing.variable} antialiased`}>
         <ThemeProvider>
           <Navbar />
           <main>{children}</main>
+          <WhatsAppButton />
         </ThemeProvider>
       </body>
     </html>

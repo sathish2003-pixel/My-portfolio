@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Download, Mail } from "lucide-react";
+import { Download, Mail, Code2, Layers, Rocket } from "lucide-react";
 import { personalInfo } from "@/config/content";
 import { Button } from "@/components/ui/Button";
 import Image from "next/image";
@@ -29,25 +29,43 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/90" />
       </div>
 
-      {/* Desktop: Static gradient blobs */}
-      <div className="absolute top-20 -left-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl pointer-events-none hidden lg:block" />
-      <div className="absolute bottom-20 -right-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none hidden lg:block" />
+      {/* Desktop: Animated background */}
+      <div className="hidden lg:block absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Large moving gradient orbs */}
+        <div className="absolute top-[-20%] left-[-10%] w-[700px] h-[700px] bg-purple-950/70 rounded-full blur-[120px] hero-orb-1" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[800px] h-[800px] bg-blue-950/70 rounded-full blur-[120px] hero-orb-2" />
+        <div className="absolute top-[30%] left-[40%] w-[500px] h-[500px] bg-rose-950/60 rounded-full blur-[100px] hero-orb-3" />
+        <div className="absolute top-[5%] right-[10%] w-[400px] h-[400px] bg-amber-950/50 rounded-full blur-[100px] hero-orb-4" />
 
-      <div className="relative z-10 px-4 sm:px-6 lg:px-20 xl:px-40 py-16 md:py-24">
-        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+        {/* Animated gradient mesh overlay */}
+        <div className="absolute inset-0 hero-mesh opacity-60" />
+
+        {/* Floating particles */}
+        <div className="absolute top-[15%] left-[20%] w-2 h-2 rounded-full bg-blue-400/15 hero-particle-1" />
+        <div className="absolute top-[60%] left-[70%] w-1.5 h-1.5 rounded-full bg-purple-400/15 hero-particle-2" />
+        <div className="absolute top-[80%] left-[30%] w-2.5 h-2.5 rounded-full bg-pink-400/12 hero-particle-3" />
+        <div className="absolute top-[25%] left-[80%] w-1.5 h-1.5 rounded-full bg-amber-400/15 hero-particle-4" />
+        <div className="absolute top-[45%] left-[15%] w-2 h-2 rounded-full bg-cyan-400/12 hero-particle-5" />
+        <div className="absolute top-[70%] left-[55%] w-1 h-1 rounded-full bg-violet-400/15 hero-particle-6" />
+      </div>
+
+      <div className="container-custom relative z-10 py-16 md:py-24">
+        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-48 xl:gap-64">
 
           {/* Text Content */}
           <div className="flex-1 text-left order-1">
             {/* Badge */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-              className="mb-5 hidden lg:block"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              className="mb-6 hidden lg:inline-flex"
             >
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium">
-                <span className="w-2 h-2 rounded-full bg-green-400" />
-                Available for opportunities
+              <span className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-white/10 bg-white/5 dark:bg-white/5 backdrop-blur-sm">
+                <span className="text-sm font-semibold tracking-wide bg-gradient-to-r from-amber-300 via-orange-400 to-rose-500 bg-clip-text text-transparent">
+                  Let's Build Together
+                </span>
+                <Rocket className="w-4 h-4 text-orange-400" />
               </span>
             </motion.div>
 
@@ -99,8 +117,9 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-              className="text-xl sm:text-2xl md:text-3xl font-semibold mb-5 text-gray-300 lg:text-gray-600 lg:dark:text-gray-400"
+              className="flex items-center gap-3 text-xl sm:text-2xl md:text-3xl font-semibold mb-5 text-gray-300 lg:text-gray-600 lg:dark:text-gray-400"
             >
+              <Code2 className="w-6 h-6 sm:w-7 sm:h-7 text-blue-500 hidden lg:block" />
               {personalInfo.role}
             </motion.h2>
 
@@ -109,10 +128,31 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-              className="text-base sm:text-lg md:text-xl mb-8 text-gray-300 lg:text-gray-600 lg:dark:text-gray-400 max-w-xl"
+              className="text-base sm:text-lg md:text-xl mb-6 text-gray-300 lg:text-gray-600 lg:dark:text-gray-400 max-w-xl"
             >
               {personalInfo.tagline}
             </motion.p>
+
+            {/* Highlights */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.45 }}
+              className="hidden lg:flex flex-wrap gap-4 mb-8"
+            >
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-400 text-sm font-medium">
+                <Layers className="w-4 h-4" />
+                Full-Stack Development
+              </span>
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-500/10 text-purple-400 text-sm font-medium">
+                <Code2 className="w-4 h-4" />
+                React & Next.js
+              </span>
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-orange-500/10 text-orange-400 text-sm font-medium">
+                <Rocket className="w-4 h-4" />
+                AI/LLM Integration
+              </span>
+            </motion.div>
 
             {/* CTA Buttons */}
             <div className="flex flex-row gap-4 justify-start items-center flex-wrap">
@@ -157,13 +197,13 @@ export function Hero() {
               </div>
               <div className="w-px h-10 bg-white/10" />
               <div className="flex items-center gap-4">
-                <span className="text-3xl font-bold gradient-text">20+</span>
+                <span className="text-3xl font-bold gradient-text">10+</span>
                 <span className="text-sm text-gray-500 dark:text-gray-400 leading-tight">Projects<br />Completed</span>
               </div>
               <div className="w-px h-10 bg-white/10" />
               <div className="flex items-center gap-4">
                 <span className="text-3xl font-bold gradient-text">100%</span>
-                <span className="text-sm text-gray-500 dark:text-gray-400 leading-tight">Passion for<br />Clean Code</span>
+                <span className="text-sm text-gray-500 dark:text-gray-400 leading-tight">Committed to<br />Excellence</span>
               </div>
             </motion.div>
           </div>
